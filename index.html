@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>vic-fut · 3 propuestas de diseño</title>
+<meta name="description" content="Tres alternativas de diseño interactivas para una app de fans de fútbol multi-equipo.">
+<style>
+  :root{--bg:#07090f;--card:#10141d;--line:#222a38;--txt:#eef2f8;--mut:#93a0b4;--acc:#febe10;--pri:#00529f;--r:18px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--txt);line-height:1.5;transition:background .4s}
+  body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(1200px 600px at 10% -10%,color-mix(in srgb,var(--pri) 45%,transparent),transparent 60%),radial-gradient(900px 500px at 100% 0%,color-mix(in srgb,var(--acc) 18%,transparent),transparent 60%);transition:background .4s}
+  .wrap{max-width:1320px;margin:0 auto;padding:40px 24px 80px}
+  header{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:36px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);font-weight:700}
+  h1{font-size:clamp(32px,5vw,56px);line-height:1.02;letter-spacing:-.02em;margin:8px 0 12px;font-weight:800}
+  .lede{color:var(--mut);max-width:640px;font-size:17px}
+  .switch{display:flex;flex-direction:column;gap:8px}
+  .switch span{font-size:12px;color:var(--mut);text-transform:uppercase;letter-spacing:.12em}
+  .seg{display:inline-flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px;gap:4px}
+  .seg button{all:unset;cursor:pointer;padding:9px 16px;border-radius:999px;font-weight:600;font-size:14px;color:var(--mut);display:flex;align-items:center;gap:8px}
+  .seg button .dot{width:12px;height:12px;border-radius:50%;box-shadow:0 0 0 2px rgba(255,255,255,.15)}
+  .seg button[aria-pressed=true]{background:var(--txt);color:#0b0e14}
+  .seg button:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:28px}
+  .opt{background:color-mix(in srgb,var(--card) 88%,transparent);border:1px solid var(--line);border-radius:28px;padding:22px;display:flex;flex-direction:column;gap:16px;backdrop-filter:blur(8px)}
+  .opt h2{font-size:22px;display:flex;align-items:center;gap:10px}
+  .opt h2 .tag{font-size:12px;font-weight:800;background:var(--acc);color:#111;border-radius:8px;padding:2px 8px}
+  .opt p{color:var(--mut);font-size:14px}
+  .refs{display:flex;flex-wrap:wrap;gap:6px}
+  .refs a{font-size:12px;color:var(--txt);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+  .refs a:hover{border-color:var(--acc)}
+  .phone{align-self:center;width:390px;max-width:100%;height:800px;border-radius:46px;padding:12px;background:#000;box-shadow:0 0 0 2px #2a2f3a,0 30px 80px rgba(0,0,0,.55);position:relative}
+  .phone iframe{width:100%;height:100%;border:0;border-radius:36px;background:#000;display:block}
+  .actions{display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:10px 14px;border-radius:12px;background:var(--txt);color:#0b0e14;text-decoration:none;font-weight:700;font-size:14px}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  footer{margin-top:56px;color:var(--mut);font-size:13px;border-top:1px solid var(--line);padding-top:20px}
+  footer a{color:var(--txt)}
+  @media (max-width:440px){.phone{height:720px;border-radius:36px;padding:8px}.phone iframe{border-radius:30px}.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <div class="eyebrow">vic-fut · prototipos interactivos</div>
+      <h1>Una app de fans.<br>Tres direcciones de diseño.</h1>
+      <p class="lede">La misma app (inicio, partidos, ficha de partido con ratings, temporadas e historia) contada de tres maneras. Cambia de equipo para ver cómo cada propuesta adopta la identidad de cada club. Todo es navegable.</p>
+    </div>
+    <div class="switch">
+      <span>Equipo</span>
+      <div class="seg" role="group" aria-label="Equipo" id="teamSeg"></div>
+    </div>
+  </header>
+
+  <main class="grid" id="grid"></main>
+
+  <footer>
+    App no oficial de fans · Prototipo de diseño. No usa escudos ni marcas oficiales: cada club se representa con monograma y colores.
+    Datos de la temporada en curso para Barça y Man United son de demostración. Referencias de patrones UI: <a href="https://mobbin.com" target="_blank" rel="noopener">Mobbin</a>.
+    · <a href="https://github.com/juandozuna/vic-fut" target="_blank" rel="noopener">Código en GitHub</a>
+  </footer>
+</div>
+
+<script src="shared/teams.js"></script>
+<script>
+(function(){
+  var OPTIONS=[
+    {key:'a',dir:'prototypes/a-estadio/',name:'Estadio',tag:'A',
+     desc:'Inmersiva y oscura. Fondo con el color del club, tarjetas de cristal, barra de pestañas flotante y un gran "próximo partido" como protagonista. Es la evolución más directa del mockup actual.',
+     refs:[['MLS','https://mobbin.com/screens/3fcac024-96e4-49ba-b47d-82d772364bda'],['Apple Sports','https://mobbin.com/screens/6e38370d-dd88-40f6-a066-6aa6cd4b0931'],['MLS Lineups','https://mobbin.com/screens/05e8dc71-e298-4662-9407-3ea3af6964b4']]},
+    {key:'b',dir:'prototypes/b-matchday/',name:'Matchday',tag:'B',
+     desc:'Clara y orientada a datos. Cabecera con el color del club, listas densas y escaneables, pestañas segmentadas y un campo verde con ratings por jugador. Pensada para consultar rápido.',
+     refs:[['FotMob','https://mobbin.com/screens/ac4c1a37-b0aa-4099-9672-334e9def90df'],['Premier League','https://mobbin.com/screens/7b028150-404e-4e1b-9a59-b68f0cc0810e'],['DAZN','https://mobbin.com/screens/55588bc8-b85c-4dea-8748-c782cb0a6821']]},
+    {key:'c',dir:'prototypes/c-portada/',name:'Portada',tag:'C',
+     desc:'Editorial y emocional. Tipografía grande, marcadores a sangre con los colores de cada equipo y la historia del club como feed de stories a pantalla completa. Pensada para enganchar.',
+     refs:[['Formula 1 stories','https://mobbin.com/screens/11a7bec2-741a-4700-8747-9915c1c0c4c4'],['NFL Watch','https://mobbin.com/screens/923d1339-0a2a-46bf-8990-4c81a4810f3e'],['TikTok','https://mobbin.com/screens/556e5bc3-e71f-4f0a-b7cf-712b443ffce8']]}
+  ];
+  var V=window.VICFUT||{order:['rm','fcb','mu'],defaultTeam:'rm',teams:{rm:{name:'Real Madrid',colors:{primary:'#00529f',accent:'#febe10'}},fcb:{name:'FC Barcelona',colors:{primary:'#004d98',accent:'#a50044'}},mu:{name:'Manchester United',colors:{primary:'#da291c',accent:'#fbe122'}}}};
+  var params=new URLSearchParams(location.search);
+  var team=V.teams[params.get('team')]?params.get('team'):V.defaultTeam;
+  var seg=document.getElementById('teamSeg'),grid=document.getElementById('grid');
+
+  V.order.forEach(function(id){
+    var t=V.teams[id],b=document.createElement('button');
+    b.type='button';b.dataset.team=id;
+    b.innerHTML='<i class="dot" style="background:linear-gradient(135deg,'+t.colors.primary+' 50%,'+t.colors.accent+' 50%)"></i>'+t.name;
+    b.addEventListener('click',function(){setTeam(id);});
+    seg.appendChild(b);
+  });
+
+  OPTIONS.forEach(function(o){
+    var el=document.createElement('section');el.className='opt';el.id='opt-'+o.key;
+    el.innerHTML='<h2><span class="tag">'+o.tag+'</span>'+o.name+'</h2><p>'+o.desc+'</p>'+
+      '<div class="refs">'+o.refs.map(function(r){return '<a href="'+r[1]+'" target="_blank" rel="noopener">↗ '+r[0]+'</a>';}).join('')+'</div>'+
+      '<div class="phone"><iframe title="Prototipo '+o.name+'" loading="lazy" data-dir="'+o.dir+'"></iframe></div>'+
+      '<div class="actions"><a class="btn" data-open="'+o.dir+'" target="_blank" rel="noopener">Abrir a pantalla completa ↗</a></div>';
+    grid.appendChild(el);
+  });
+
+  function setTeam(id){
+    team=id;var t=V.teams[id];
+    document.documentElement.style.setProperty('--pri',t.colors.primary);
+    document.documentElement.style.setProperty('--acc',t.colors.accent);
+    [].forEach.call(seg.children,function(b){b.setAttribute('aria-pressed',String(b.dataset.team===id));});
+    [].forEach.call(document.querySelectorAll('iframe[data-dir]'),function(f){
+      if(!f.src){f.src=f.dataset.dir+'?team='+id;return;}
+      try{f.contentWindow.postMessage({type:'vicfut:team',team:id},'*');}catch(e){f.src=f.dataset.dir+'?team='+id;}
+    });
+    [].forEach.call(document.querySelectorAll('[data-open]'),function(a){a.href=a.dataset.open+'?team='+id;});
+    var u=new URL(location.href);u.searchParams.set('team',id);history.replaceState(null,'',u);
+  }
+  setTeam(team);
+})();
+</script>
+</body>
+</html>

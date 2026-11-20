@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#00529f">
+<meta name="color-scheme" content="light dark">
+<title>vic-fut · Matchday</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-ball" viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#fff" stroke="#111" stroke-width="1.2"/><path d="M8 4.6l2.4 1.7-.9 2.9H6.5l-.9-2.9z" fill="#111"/><path d="M8 4.6V1.2M10.4 6.3l3.1-1.2M9.5 9.2l1.9 2.7M6.5 9.2l-1.9 2.7M5.6 6.3L2.5 5.1" stroke="#111" stroke-width="1"/></symbol>
+    <symbol id="i-boot" viewBox="0 0 16 16"><path d="M2 4h4l1 4 6 1.5c1 .3 1.5 1 1.5 2V12H2z" fill="currentColor"/><path d="M3 13.5h1M6 13.5h1M9 13.5h1M12 13.5h1" stroke="currentColor" stroke-width="1.4"/></symbol>
+    <symbol id="i-star" viewBox="0 0 16 16"><path d="M8 1.2l2 4.3 4.7.5-3.5 3.2 1 4.6L8 11.5l-4.2 2.3 1-4.6L1.3 6l4.7-.5z" fill="currentColor"/></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path d="M8 2l5 6H9.5v6h-3V8H3z" fill="currentColor"/></symbol>
+    <symbol id="i-down" viewBox="0 0 16 16"><path d="M8 14L3 8h3.5V2h3v6H13z" fill="currentColor"/></symbol>
+    <symbol id="i-chev" viewBox="0 0 16 16"><path d="M6 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-chevd" viewBox="0 0 16 16"><path d="M3.5 6l4.5 4.5L12.5 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.9 4.5 7.2 4.5c2 0 3.6 1.1 4.8 2.8 1.2-1.7 2.8-2.8 4.8-2.8 3.3 0 5.6 3.1 4.4 6.6-1.7 4.8-9.2 9.4-9.2 9.4z" fill="var(--fill,none)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-save" viewBox="0 0 24 24"><path d="M6 3.5h12v17l-6-4.2-6 4.2z" fill="var(--fill,none)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 15V3.5M7.5 8L12 3.5 16.5 8M5 12v7.5h14V12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0112 0v5.5l1.5 2h-15zM10 20.5a2 2 0 004 0" fill="var(--fill,none)" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 16 16"><path d="M8 15s5-4.6 5-8.5A5 5 0 003 6.5C3 10.4 8 15 8 15z" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6.5" r="1.8" fill="currentColor"/></symbol>
+    <symbol id="i-check" viewBox="0 0 16 16"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-swap" viewBox="0 0 16 16"><path d="M4 5h9l-2.5-2.5M12 11H3l2.5 2.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <!-- tab bar -->
+    <symbol id="t-home" viewBox="0 0 24 24"><path d="M3.5 10.5L12 3.5l8.5 7V20a.5.5 0 01-.5.5h-5v-6h-6v6H4a.5.5 0 01-.5-.5z" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/></symbol>
+    <symbol id="t-matches" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.9"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><circle cx="12" cy="15" r="2" fill="var(--dot,currentColor)"/></symbol>
+    <symbol id="t-season" viewBox="0 0 24 24"><path d="M4 20.5h16" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/><rect x="5" y="11" width="3.6" height="7" rx="1" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.7"/><rect x="10.2" y="6" width="3.6" height="12" rx="1" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.7"/><rect x="15.4" y="9" width="3.6" height="9" rx="1" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.7"/></symbol>
+    <symbol id="t-history" viewBox="0 0 24 24"><rect x="5" y="2.5" width="14" height="19" rx="3" fill="var(--fill,none)" stroke="currentColor" stroke-width="1.9"/><path d="M9.5 9.5l5 2.5-5 2.5z" fill="var(--dot,currentColor)"/></symbol>
+    <symbol id="t-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.9" fill="currentColor"/><circle cx="12" cy="12" r="1.9" fill="currentColor"/><circle cx="18.5" cy="12" r="1.9" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <a class="skip" href="#view">Saltar al contenido</a>
+  <header class="appbar" id="appbar"></header>
+  <main class="view" id="view" tabindex="-1" aria-live="off"></main>
+  <nav class="tabbar" id="tabbar" aria-label="Secciones">
+    <button type="button" class="tab" data-act="go" data-v="home"><svg aria-hidden="true"><use href="#t-home"/></svg><span>Inicio</span></button>
+    <button type="button" class="tab" data-act="go" data-v="matches"><svg aria-hidden="true"><use href="#t-matches"/></svg><span>Partidos</span></button>
+    <button type="button" class="tab" data-act="go" data-v="season"><svg aria-hidden="true"><use href="#t-season"/></svg><span>Temporadas</span></button>
+    <button type="button" class="tab" data-act="go" data-v="history"><svg aria-hidden="true"><use href="#t-history"/></svg><span>Historia</span></button>
+    <button type="button" class="tab" data-act="go" data-v="more"><svg aria-hidden="true"><use href="#t-more"/></svg><span>Más</span></button>
+  </nav>
+
+  <div class="scrim" id="scrim" hidden data-act="close"></div>
+  <section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden tabindex="-1"></section>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</div>
+
+<script src="../../shared/teams.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
